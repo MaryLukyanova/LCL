@@ -1,0 +1,15 @@
+This document describes a protocol of communication between client and server for a simple chat application.
+Application use the socket  type: TCP.
+Client should send to the connected socket a sequence (concatenation) of commands. 
+Sequence  shouldn’t contain more than 512 characters.
+Not allowed to use symbols like “\n”, “\t”, etc.
+Server replies with outgoing message after each command. On each incoming message server sends a message which starts with “Server reply: ..“.
+Others server replies start with “Message: ..”.
+
+Valid user name can’t contain more than 12 characters (you can use only [a-zA-Z0-9]). 
+Command should start with prefix (‘%’, 0x25).
+Parameters must begin with (‘-‘, 0x226).
+Parameters and command should be separated with a (' ', 0x20).
+Example of the command : “%write -w -l Message to write %”.
+
+
